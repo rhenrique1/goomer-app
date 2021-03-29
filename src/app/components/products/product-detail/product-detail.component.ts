@@ -13,7 +13,7 @@ export class ProductDetailComponent implements OnInit {
 
   private subscriptions: Subscription[] = [];
   public product!: Product;
-  public quantity: number = 0;
+  public quantity: number = 1;
   public isLoading: boolean = true;
 
   @Input() productId!: number;
@@ -53,7 +53,7 @@ export class ProductDetailComponent implements OnInit {
   }
 
   onClose() {
-    this.close.emit(true);
+    this.close.emit(false);
   }
 
   addProduct() {

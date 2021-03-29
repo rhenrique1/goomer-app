@@ -16,4 +16,8 @@ export class RestaurantCardComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  isOpen(): boolean {
+    return true;
+  }
 }

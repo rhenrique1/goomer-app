@@ -23,7 +23,6 @@ div {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   border-radius: 8px;
   opacity: 1;
-  text-align: left;
 }
 
 .product-over-box {
@@ -36,7 +35,6 @@ div {
   left: 30vw;
   width: 10vw;
   z-index: 30;
-  text-align: right;
 }
 
 .product-box-actions {
@@ -71,6 +69,30 @@ div {
   box-shadow: 0px 2px 4px #00000029;
   position: relative;
   z-index: 40;
-  left: 495px;
+  left: 575px;
   top: 20px;
+}
+
+.price {
+  white-space: nowrap;
+  bottom: 0;
+  left: 0;
+  min-width: 30%;
+}
+
+.product-name {
+  min-width: 60%;
+}
+
+.product-description {
+  min-width: 60%;
+}
+
+.center {
+  top: 150px;
+  position: relative;
+}
+
+.no-wrap {
+  white-space: nowrap;
 }

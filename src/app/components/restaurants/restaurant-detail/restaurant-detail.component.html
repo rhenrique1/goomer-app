@@ -1,87 +1,74 @@
-<div *ngIf="isLoading" class="mt-3 text-center">
-  <app-loading-spinner></app-loading-spinner>
-</div>
-<app-product-detail *ngIf="productSelected" [productId]="selectedProductId" (close)="closeProductDetail($event)"></app-product-detail>
-<div *ngIf="!isLoading" class="mt-24 restaurant-detail">
-  <table class="m-auto">
-    <tr>
-      <td class="restaurant-logo">
-        <img class="restaurant-logo" [src]="restaurant.photo" alt="">
-      </td>
-      <td>
-        <table>
-          <tr>
-            <td>{{ restaurant.name }}</td>
-          </tr>
-          <tr>
-            <td>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-              dolore magna aliqua.
-            </td>
-          </tr>
-          <tr>
-            <td>{{ restaurant.openHours }}</td>
-          </tr>
-          <tr>
-            <td>{{ restaurant.openHours }}</td>
-          </tr>
-          <tr>
-            <td>{{ restaurant.openHours }}</td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-  </table>
-  <div class="mt-1">
-    <div class="input-group mb-3 w-50 m-auto">
-      <input type="text" class="form-control" placeholder="Buscar no cardápio" aria-label="Buscar no cardápio"
-        aria-describedby="basic-addon2">
-      <div class="input-group-append">
-        <button class="btn btn-default" type="button"><img src="assets/img/search.svg" alt=""></button>
+<app-product-detail *ngIf="productSelected" [productId]="selectedProductId" (close)="closeProductDetail($event)">
+</app-product-detail>
+<div class="w-100">
+  <div class="mt-24 restaurant-detail w-75">
+    <div *ngIf="isLoading" class="m-auto text-center position-relative">
+      <app-loading-spinner></app-loading-spinner>
+    </div>
+    <table *ngIf="!isLoading" class="m-auto w-75">
+      <tr>
+        <td class="restaurant-logo">
+          <img class="restaurant-logo" [src]="restaurant.photo" alt="">
+        </td>
+        <td>
+          <table class="m-auto">
+            <tr>
+              <td class="fs-24">{{ restaurant.name }}</td>
+            </tr>
+            <tr>
+              <td class="fs-16">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua.
+              </td>
+            </tr>
+            <tr>
+              <td class="fs-12">Segunda à Sexta: <span class="fw-bold">{{ restaurant.openingHours }}</span></td>
+            </tr>
+            <tr>
+              <td class="fs-12">Sábados: <span class="fw-bold">{{ restaurant.openingHours }}</span></td>
+            </tr>
+            <tr>
+              <td class="fs-12">Domingos e Feriados: <span class="fw-bold">{{ restaurant.openingHours }}</span></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+    <div class="mt-3">
+      <div class="input-group mb-3 w-75 m-auto">
+        <input type="text" class="form-control" placeholder="Buscar no cardápio" aria-label="Buscar no cardápio"
+          aria-describedby="basic-addon2">
+        <div class="input-group-append">
+          <button class="btn btn-default" type="button"><img src="assets/img/search.svg" alt=""></button>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="categories">
-    <div class="accordion" id="accordionExample">
-      <div class="accordion-item m-auto w-75">
-        <h2 class="accordion-header" id="headingOne">
-          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
-            aria-expanded="true" aria-controls="collapseOne">
-            <p class="fs-16">Almoços</p>
-          </button>
-        </h2>
-        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
-          data-bs-parent="#accordionExample">
-          <div class="accordion-body">
-            <div class="mt-1 m-auto w-100">
-              <div class="row">
-                <div class="col-md-6">
-                  <table class="food-card" (click)="selectProduct(1)">
-                    <tr>
-                      <td class="food-photo">
-                        <img class="food-photo" src="assets/img/prato-de-restaurante-vegetariano@2x.png" alt="">
-                      </td>
-                      <td>
-                        <table>
-                          <tr>
-                            <td>Nome do Prato</td>
-                          </tr>
-                          <tr>
-                            <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do</td>
-                          </tr>
-                          <tr>
-                            <td>R$ 19,90 <span class="text-secondary strikethrough">R$ 19,90</span></td>
-                          </tr>
-                        </table>
-                      </td>
-                    </tr>
-                  </table>
+    <div class="categories">
+      <div class="accordion" id="accordionExample">
+        <div class="accordion-item m-auto w-75">
+          <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+              aria-expanded="true" aria-controls="collapseOne">
+              <p class="fs-16">Pratos</p>
+            </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body p-0">
+              <div class="w-100">
+                <div class="row">
+                  <div *ngIf="isLoading" class="m-auto mt-4 text-center position-relative">
+                    <app-loading-spinner></app-loading-spinner>
+                  </div>
+                  <div *ngFor="let product of products" class="col-md-6 mt-4">
+                    <app-product-card [product]="product" (click)="selectProduct(product.id)"></app-product-card>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-  </div>
+    </div>
   </div>
 </div>

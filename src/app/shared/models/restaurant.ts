@@ -3,5 +3,5 @@ export interface Restaurant {
   photo: string;
   name: string;
   address: string;
-  openHours: string[];
+  openingHours: string[];
 }

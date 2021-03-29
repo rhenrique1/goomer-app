@@ -9,10 +9,10 @@ export class NavigationService {
   constructor(private router: Router) { }
 
   navigate(path: string, param?: number): void {
-    if(param) {
-        this.router.navigate([path + '/' + param]);
+    if (param) {
+      this.router.navigate([path + '/' + param]);
     } else {
-        this.router.navigate([path]);
+      this.router.navigate([path]);
     }
   }
 }

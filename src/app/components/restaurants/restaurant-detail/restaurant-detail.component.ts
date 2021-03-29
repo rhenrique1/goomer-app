@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { Product } from 'src/app/shared/models/product';
 import { Restaurant } from 'src/app/shared/models/restaurant';
+import { ProductService } from 'src/app/shared/services/product.service';
 import { RestaurantService } from 'src/app/shared/services/restaurant.service';
 
 @Component({
@@ -12,6 +14,7 @@ import { RestaurantService } from 'src/app/shared/services/restaurant.service';
 export class RestaurantDetailComponent implements OnInit {
 
   public restaurant!: Restaurant;
+  public products: Product[] = [];
   private restaurantId!: number;
   private subscriptions: Subscription[] = [];
   public isLoading: boolean = true;
@@ -22,6 +25,7 @@ export class RestaurantDetailComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private restaurantService: RestaurantService,
+    private productService: ProductService
   ) { }
 
   ngOnInit(): void {
@@ -29,27 +33,40 @@ export class RestaurantDetailComponent implements OnInit {
       this.restaurantId = params['id'];
     });
     this.initRestaurant();
+    this.initProducts();
   }
 
   ngOnDestroy(): void {
-    if(this.subscriptions.length > 0) {
+    if (this.subscriptions.length > 0) {
       this.subscriptions.forEach(s => s.unsubscribe());
     }
   }
 
   initRestaurant() {
-    this.isLoading = true;
     this.subscriptions.push(this.restaurantService.getRestaurantById(this.restaurantId)
-    .subscribe(
-      res => {
-        console.log(res);
-        this.restaurant = res;
-        this.isLoading = false;
-      }, err => {
-        console.log(err);
-        this.isLoading = false;
-      } 
-    ));
+      .subscribe(
+        res => {
+          console.log(res);
+          this.restaurant = res;
+        }, err => {
+          console.log(err);
+        }
+      ));
+  }
+
+  initProducts() {
+    this.isLoading = true;
+    this.subscriptions.push(this.productService.getProductsByRestaurantId(this.restaurantId)
+      .subscribe(
+        res => {
+          console.log(res);
+          this.products = res;
+          this.isLoading = false;
+        }, err => {
+          console.log(err);
+          this.isLoading = false;
+        }
+      ));
   }
 
   selectProduct(productId: number) {
@@ -61,5 +78,4 @@ export class RestaurantDetailComponent implements OnInit {
   closeProductDetail(boolean: any) {
     this.productSelected = false;
   }
-
 }

@@ -10,6 +10,7 @@ import { RestaurantDetailComponent } from './components/restaurants/restaurant-d
 import { ProductDetailComponent } from './components/products/product-detail/product-detail.component';
 import { AlertComponent } from './shared/alert/alert.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
+import { ProductCardComponent } from './components/products/product-card/product-card.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
     ProductDetailComponent,
     AlertComponent,
     LoadingSpinnerComponent,
+    ProductCardComponent,
   ],
   imports: [
     BrowserModule,

@@ -7,16 +7,15 @@ import { Product } from '../models/product';
 })
 export class ProductService {
 
-  private readonly url = 'http://localhost:3000/products';
+  private readonly url = 'http://localhost:3000/';
 
   constructor(private http: HttpClient) { }
 
   getProductsByRestaurantId(restaurantId: number) {
-    return this.http.get<Product[]>(this.url + '/' + restaurantId);
+    return this.http.get<Product[]>(this.url + 'restaurant/products/' + restaurantId);
   }
 
   getProductById(productId: number) {
-    return this.http.get<Product>(this.url + '/' + productId);
+    return this.http.get<Product>(this.url + 'products/' + productId);
   }
-
 }
