@@ -1,0 +1,38 @@
+<div class="card-box">
+  <div *ngIf="true" class="circle-open">
+    <div class="text-circle-open">
+      <p>Aberto<br>agora</p>
+    </div>
+  </div>
+  <div *ngIf="false" class="circle-closed">
+    <div class="text-circle-closed">
+      <p>Fechado</p>
+    </div>
+  </div>
+  <div class="card" (click)="navigationService.navigate('restaurant/', restaurant.id)">
+    <table>
+      <tr>
+        <td>
+          <!-- <img src="assets/img/vegan-restaurant-logo-design_1438-10.png" alt=""> -->
+          <img class="img" [src]="restaurant.photo" alt="">
+        </td>
+        <td>
+          <table cellspacing="0" class="restaurant-data">
+            <tr>
+              <td class="restaurant-name">
+                <!-- <p>Nome do Restaurante</p> -->
+                <p>{{ restaurant.name }}</p>
+              </td>
+            </tr>
+            <tr>
+              <td class="restaurant-address">
+                <!-- <p>Endereço do restaurante</p> -->
+                <p>{{ restaurant.address }}</p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,76 @@
+div {
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #00000033;
+  z-index: 10;
+}
+
+.product-box {
+  margin: auto;
+  position: relative !important;
+  width: 601px;
+  height: 484px;
+  padding: 16px;
+  z-index: 20;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  border-radius: 8px;
+  opacity: 1;
+  text-align: left;
+}
+
+.product-over-box {
+  margin: auto;
+  position: fixed;
+  margin-top: 80px;
+  width: 645px;
+  height: 485px;
+  top: 8vh;
+  left: 30vw;
+  width: 10vw;
+  z-index: 30;
+  text-align: right;
+}
+
+.product-box-actions {
+  justify-content: center;
+}
+
+.product-photo {
+  width: 560px;
+  height: 196px;
+}
+
+.product-quantity {
+  width: 125px;
+  height: 50px;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  border: 1px solid #a8a7a7a1;
+  border-radius: 4px;
+  opacity: 1;
+}
+
+.center-text {
+  height: 100px;
+  text-align: center;
+}
+
+.circle {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  display: inline-block;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  box-shadow: 0px 2px 4px #00000029;
+  position: relative;
+  z-index: 40;
+  left: 495px;
+  top: 20px;
+}
