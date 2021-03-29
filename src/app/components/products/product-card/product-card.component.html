@@ -6,10 +6,19 @@
     <td>
       <table class="m-auto w-85">
         <tr>
-          <td class="fs-16">{{ product.name }}</td>
+          <td class="fs-16 product-name">{{ product.name }}</td>
+          <td *ngIf="product.promotionalPrice < product.price" class="text-white fs-8 text-center m-auto">
+            <div class="promo-almoco">
+              <img src="assets/img/award.svg" alt="">
+              <span class="align-middle m-auto">
+                Promo Almoço
+              </span> 
+            </div>
+          </td>
+          <td *ngIf="product.promotionalPrice >= product.price">&nbsp;</td>
         </tr>
         <tr>
-          <td class="fs-12">{{ product.description }}</td>
+          <td class="fs-12" colspan="2">{{ product.description }}</td>
         </tr>
         <tr>
           <td class="color-goomer fs-16">
@@ -21,11 +30,11 @@
                 {{ product.price | currency: 'BRL' }}
               </span>
             </ng-container>
-            <span *ngIf="product.promotionalPrice > product.price">
+            <span *ngIf="product.promotionalPrice >= product.price">
               {{ product.price | currency: 'BRL' }}
             </span>
-
           </td>
+          <td>&nbsp;</td>
         </tr>
       </table>
     </td>

@@ -37,3 +37,18 @@ table {
   position: relative;
   z-index: 3;
 }
+
+.promo-almoco {
+  flex: auto;
+  flex-direction: row;
+  position: relative;
+  background: #2B0D61 0% 0% no-repeat padding-box;
+  border-radius: 11px;
+  opacity: 1;
+  height: 20px;
+  vertical-align: middle;
+}
+
+.product-name {
+  height: 25px;
+}

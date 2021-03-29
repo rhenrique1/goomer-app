@@ -31,7 +31,7 @@
               <p *ngIf="product.promotionalPrice < product.price">
                 {{ product.promotionalPrice | currency: 'BRL' }}
               </p>
-              <p *ngIf="product.promotionalPrice > product.price">
+              <p *ngIf="product.promotionalPrice >= product.price">
                 {{ product.price | currency: 'BRL' }}
               </p>
             </td>
@@ -66,8 +66,11 @@
               <span class="fs-20 alignleft align-middle">
                 Adicionar
               </span>
-              <span class="fs-20 alignright no-wrap">
+              <span *ngIf="product.promotionalPrice >= product.price" class="fs-20 alignright no-wrap">
                 {{ product.price | currency: 'BRL' }}
+              </span>
+              <span *ngIf="product.promotionalPrice < product.price" class="fs-20 alignright no-wrap">
+                {{ product.promotionalPrice | currency: 'BRL' }}
               </span>
             </button>
           </div>
