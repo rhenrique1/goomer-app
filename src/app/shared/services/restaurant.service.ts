@@ -12,11 +12,14 @@ export class RestaurantService {
   constructor(private http: HttpClient) { }
 
   getRestaurants() {
-    console.log(this.url);
     return this.http.get<Restaurant[]>(this.url);
   }
 
   getRestaurantById(restaurantId: number) {
     return this.http.get<Restaurant>(this.url + restaurantId);
+  }
+
+  getRestaurantsNameLike(filter: string) {
+    return this.http.get<Restaurant[]>(this.url + 'name/' + filter);
   }
 }

@@ -12,6 +12,7 @@ import { NavigationService } from 'src/app/shared/utils/navigation.service';
 export class HomeComponent implements OnInit {
 
   public restaurants: Restaurant[] = [];
+  public restaurantFilter: string = '';
   public isLoading: boolean = true;
   private subscriptions: Subscription[] = [];
 
@@ -21,21 +22,44 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.initRestaurants();
+    this.initRestaurants('');
   }
 
-  initRestaurants(): void {
+  initRestaurants(filter: string): void {
     this.isLoading = true;
-    this.subscriptions.push(this.restaurantService.getRestaurants()
-      .subscribe(
-        res => {
-          console.log(res);
-          this.restaurants = res;
-          this.isLoading = false;
-        }, err => {
-          console.log(err);
-          this.isLoading = false;
-        }
-      ));
+    if (filter != '') {
+      this.subscriptions.push(this.restaurantService.getRestaurantsNameLike(filter)
+        .subscribe(
+          res => {
+            console.log(res);
+            this.restaurants = res;
+            this.isLoading = false;
+          }, err => {
+            console.log(err);
+            this.isLoading = false;
+          }
+        ));
+
+    } else {
+      this.subscriptions.push(this.restaurantService.getRestaurants()
+        .subscribe(
+          res => {
+            console.log(res);
+            this.restaurants = res;
+            this.isLoading = false;
+          }, err => {
+            console.log(err);
+            this.isLoading = false;
+          }
+        ));
+    }
+  }
+
+  filterByName() {
+    if (this.restaurantFilter != '') {
+      this.initRestaurants(this.restaurantFilter);
+    } else {
+      this.initRestaurants('');
+    }
   }
 }

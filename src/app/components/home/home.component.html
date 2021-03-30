@@ -4,11 +4,12 @@
 <div class="mt-32">
   <div class="input-group mb-3 w-50 m-auto">
     <input type="text" class="form-control" placeholder="Buscar estabelecimento" aria-label="Buscar estabelecimento"
-      aria-describedby="basic-addon2">
-    <div class="input-group-append">
-      <button class="btn btn-default" type="button"><img src="assets/img/search.svg" alt=""></button>
-    </div>
+      aria-describedby="basic-addon2" [(ngModel)]="restaurantFilter">
+    <div class=" input-group-append">
+    <button class="btn btn-default" type="button" (click)="filterByName()"><img src="assets/img/search.svg"
+        alt=""></button>
   </div>
+</div>
 </div>
 <div class="container w-100 m-auto">
   <div class="row m-auto">

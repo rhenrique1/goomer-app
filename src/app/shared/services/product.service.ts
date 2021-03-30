@@ -18,4 +18,10 @@ export class ProductService {
   getProductById(productId: number) {
     return this.http.get<Product>(this.url + 'products/' + productId);
   }
+
+  getProductsNameLike(restaurantId: number, nameLike: string) {
+    const param = JSON.stringify({ nameLike: nameLike, restaurantId: restaurantId })
+    console.log(param);
+    return this.http.get<Product[]>(this.url + 'products/name/' + param);
+  }
 }

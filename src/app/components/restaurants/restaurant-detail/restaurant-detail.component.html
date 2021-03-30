@@ -37,9 +37,9 @@
     <div class="mt-3">
       <div class="input-group mb-3 w-75 m-auto">
         <input type="text" class="form-control" placeholder="Buscar no cardápio" aria-label="Buscar no cardápio"
-          aria-describedby="basic-addon2">
+          aria-describedby="basic-addon2" [(ngModel)]="productFilter">
         <div class="input-group-append">
-          <button class="btn btn-default" type="button"><img src="assets/img/search.svg" alt=""></button>
+          <button class="btn btn-default" type="button" (click)="filterByName()"><img src="assets/img/search.svg" alt=""></button>
         </div>
       </div>
     </div>
@@ -57,12 +57,14 @@
             <div class="accordion-body p-0">
               <div class="w-100">
                 <div class="row">
-                  <div *ngIf="isLoading" class="m-auto mt-4 text-center position-relative">
+                  <div *ngIf="isLoadingProducts" class="m-auto mt-4 text-center position-relative">
                     <app-loading-spinner></app-loading-spinner>
                   </div>
-                  <div *ngFor="let product of products" class="col-md-6 mt-4">
-                    <app-product-card [product]="product" (click)="selectProduct(product.id)"></app-product-card>
-                  </div>
+                  <ng-container *ngIf="!isLoadingProducts">
+                    <div *ngFor="let product of products" class="col-md-6 mt-4">
+                      <app-product-card [product]="product" (click)="selectProduct(product.id)"></app-product-card>
+                    </div>
+                  </ng-container>
                 </div>
               </div>
             </div>

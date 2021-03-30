@@ -14,10 +14,12 @@ import { RestaurantService } from 'src/app/shared/services/restaurant.service';
 export class RestaurantDetailComponent implements OnInit {
 
   public restaurant!: Restaurant;
+  public productFilter: string = '';
   public products: Product[] = [];
   private restaurantId!: number;
   private subscriptions: Subscription[] = [];
   public isLoading: boolean = true;
+  public isLoadingProducts: boolean = true;
   public productSelected: boolean = false;
   public selectedProductId: number = 0;
 
@@ -33,7 +35,7 @@ export class RestaurantDetailComponent implements OnInit {
       this.restaurantId = params['id'];
     });
     this.initRestaurant();
-    this.initProducts();
+    this.initProducts('');
   }
 
   ngOnDestroy(): void {
@@ -47,30 +49,47 @@ export class RestaurantDetailComponent implements OnInit {
       .subscribe(
         res => {
           console.log(res);
+          this.isLoading = false;
           this.restaurant = res;
         }, err => {
           console.log(err);
+          this.isLoading = false;
         }
       ));
   }
 
-  initProducts() {
-    this.isLoading = true;
-    this.subscriptions.push(this.productService.getProductsByRestaurantId(this.restaurantId)
-      .subscribe(
-        res => {
-          console.log(res);
-          this.products = res;
-          this.isLoading = false;
-        }, err => {
-          console.log(err);
-          this.isLoading = false;
-        }
-      ));
+  initProducts(filter: string) {
+    this.isLoadingProducts = true;
+    if (filter != '') {
+      this.subscriptions.push(this.productService.getProductsNameLike(this.restaurantId, filter)
+        .subscribe(
+          res => {
+            console.log(res);
+            this.products = res;
+            this.isLoadingProducts = false;
+            this.isLoading = false;
+          }, err => {
+            console.log(err);
+            this.isLoadingProducts = false;
+            this.isLoading = false;
+          }
+        ));
+    } else {
+      this.subscriptions.push(this.productService.getProductsByRestaurantId(this.restaurantId)
+        .subscribe(
+          res => {
+            console.log(res);
+            this.products = res;
+            this.isLoadingProducts = false;
+          }, err => {
+            console.log(err);
+            this.isLoadingProducts = false;
+          }
+        ));
+    }
   }
 
   selectProduct(productId: number) {
-    console.log(productId);
     this.selectedProductId = productId;
     this.productSelected = true;
   }
@@ -78,4 +97,13 @@ export class RestaurantDetailComponent implements OnInit {
   closeProductDetail(boolean: any) {
     this.productSelected = false;
   }
+
+  filterByName() {
+    if (this.productFilter != '') {
+      this.initProducts(this.productFilter);
+    } else {
+      this.initProducts('');
+    }
+  }
 }
+
