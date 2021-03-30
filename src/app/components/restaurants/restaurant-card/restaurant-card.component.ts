@@ -18,6 +18,19 @@ export class RestaurantCardComponent implements OnInit {
   }
 
   isOpen(): boolean {
-    return true;
+    let today = new Date();
+    let time = today.getHours() + ':' + today.getMinutes();
+    let day = today.getDay();
+    let isOpen = false;
+
+    this.restaurant.openingHours.forEach(element => {
+      if (day = element.day) {
+        if (element.opening < time && element.closing > time) {
+          isOpen = true;
+        }
+      }
+    });
+    
+    return isOpen;
   }
 }

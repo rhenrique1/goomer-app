@@ -19,7 +19,8 @@ export class RestaurantService {
     return this.http.get<Restaurant>(this.url + restaurantId);
   }
 
-  getRestaurantsNameLike(filter: string) {
-    return this.http.get<Restaurant[]>(this.url + 'name/' + filter);
+  getRestaurantsNameLike(nameLike: string) {
+    const param = JSON.stringify({ nameLike: nameLike })
+    return this.http.get<Restaurant[]>(this.url + 'name/' + param);
   }
 }

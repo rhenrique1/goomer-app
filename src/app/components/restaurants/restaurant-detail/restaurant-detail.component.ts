@@ -23,8 +23,17 @@ export class RestaurantDetailComponent implements OnInit {
   public productSelected: boolean = false;
   public selectedProductId: number = 0;
 
+  public weekDays: string[] = [
+    'Domingo',
+    'Segunda',
+    'Terça',
+    'Quarta',
+    'Quinta',
+    'Sexta',
+    'Sábado'
+  ]
+
   constructor(
-    private router: Router,
     private activatedRoute: ActivatedRoute,
     private restaurantService: RestaurantService,
     private productService: ProductService

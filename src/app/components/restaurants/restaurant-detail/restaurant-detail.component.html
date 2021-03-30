@@ -21,14 +21,13 @@
                 dolore magna aliqua.
               </td>
             </tr>
-            <tr>
-              <td class="fs-12">Segunda à Sexta: <span class="fw-bold">{{ restaurant.openingHours }}</span></td>
-            </tr>
-            <tr>
-              <td class="fs-12">Sábados: <span class="fw-bold">{{ restaurant.openingHours }}</span></td>
-            </tr>
-            <tr>
-              <td class="fs-12">Domingos e Feriados: <span class="fw-bold">{{ restaurant.openingHours }}</span></td>
+            <tr *ngFor="let o of restaurant.openingHours">
+              <td class="fs-12">
+                {{ weekDays[o.day] }}:
+                <span class="fw-bold">
+                  {{ o.opening  }} às {{ o.closing }}
+                </span>
+              </td>
             </tr>
           </table>
         </td>
@@ -39,7 +38,8 @@
         <input type="text" class="form-control" placeholder="Buscar no cardápio" aria-label="Buscar no cardápio"
           aria-describedby="basic-addon2" [(ngModel)]="productFilter">
         <div class="input-group-append">
-          <button class="btn btn-default" type="button" (click)="filterByName()"><img src="assets/img/search.svg" alt=""></button>
+          <button class="btn btn-default" type="button" (click)="filterByName()"><img src="assets/img/search.svg"
+              alt=""></button>
         </div>
       </div>
     </div>
