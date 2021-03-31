@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { OpeningHours } from 'src/app/shared/models/openingHours';
 import { Product } from 'src/app/shared/models/product';
 import { Restaurant } from 'src/app/shared/models/restaurant';
 import { ProductService } from 'src/app/shared/services/product.service';
@@ -16,6 +17,7 @@ export class RestaurantDetailComponent implements OnInit {
   public restaurant!: Restaurant;
   public productFilter: string = '';
   public products: Product[] = [];
+  public hours: OpeningHours[] = [];
   private restaurantId!: number;
   private subscriptions: Subscription[] = [];
   public isLoading: boolean = true;
@@ -44,7 +46,6 @@ export class RestaurantDetailComponent implements OnInit {
       this.restaurantId = params['id'];
     });
     this.initRestaurant();
-    this.initProducts('');
   }
 
   ngOnDestroy(): void {
@@ -58,11 +59,17 @@ export class RestaurantDetailComponent implements OnInit {
       .subscribe(
         res => {
           console.log(res);
-          this.isLoading = false;
           this.restaurant = res;
+          this.products = res.products;
+          this.hours = res.openingHours;
+          this.hours.sort((a, b) => (a.day > b.day) ? 1 : -1);
+
+          this.isLoading = false;
+          this.isLoadingProducts = false;
         }, err => {
           console.log(err);
           this.isLoading = false;
+          this.isLoadingProducts = false;
         }
       ));
   }
@@ -83,18 +90,6 @@ export class RestaurantDetailComponent implements OnInit {
             this.isLoading = false;
           }
         ));
-    } else {
-      this.subscriptions.push(this.productService.getProductsByRestaurantId(this.restaurantId)
-        .subscribe(
-          res => {
-            console.log(res);
-            this.products = res;
-            this.isLoadingProducts = false;
-          }, err => {
-            console.log(err);
-            this.isLoadingProducts = false;
-          }
-        ));
     }
   }
 
@@ -110,8 +105,6 @@ export class RestaurantDetailComponent implements OnInit {
   filterByName() {
     if (this.productFilter != '') {
       this.initProducts(this.productFilter);
-    } else {
-      this.initProducts('');
     }
   }
 }

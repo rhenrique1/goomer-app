@@ -11,7 +11,7 @@
           <img class="restaurant-logo" [src]="restaurant.photo" alt="">
         </td>
         <td>
-          <table class="m-auto">
+          <table class="m-auto text-left w-90">
             <tr>
               <td class="fs-24">{{ restaurant.name }}</td>
             </tr>
@@ -21,11 +21,11 @@
                 dolore magna aliqua.
               </td>
             </tr>
-            <tr *ngFor="let o of restaurant.openingHours">
+            <tr *ngFor="let hour of hours">
               <td class="fs-12">
-                {{ weekDays[o.day] }}:
+                {{ weekDays[hour.day] }}:
                 <span class="fw-bold">
-                  {{ o.opening  }} às {{ o.closing }}
+                  {{ hour.opening  }} às {{ hour.closing }}
                 </span>
               </td>
             </tr>

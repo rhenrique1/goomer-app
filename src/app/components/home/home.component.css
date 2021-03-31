@@ -10,8 +10,6 @@ input {
 }
 
 .titulo {
-  top: 94px;
-  left: 480px;
   width: 400px;
   height: 29px;
   margin-top: 32px;
@@ -23,8 +21,6 @@ input {
 }
 
 .search-bar {
-  top: 155px;
-  left: 221px;
   width: 840px;
   height: 40px;
   background: #FBFBFB 0% 0% no-repeat padding-box;
@@ -35,7 +31,6 @@ input {
 .search-button {
   width: 30px;
   height: 16px;
-  background: transparent 0% 0% no-repeat padding-box;
   opacity: 1;
   z-index: 2;
   position: absolute;

@@ -24,7 +24,7 @@ export class RestaurantCardComponent implements OnInit {
     let isOpen = false;
 
     this.restaurant.openingHours.forEach(element => {
-      if (day = element.day) {
+      if (day === element.day) {
         if (element.opening < time && element.closing > time) {
           isOpen = true;
         }
@@ -32,5 +32,13 @@ export class RestaurantCardComponent implements OnInit {
     });
     
     return isOpen;
+  }
+
+  navigate(): void {
+    if (this.isOpen()) {
+      this.navigationService.navigate('restaurant/', this.restaurant.id)
+    } else {
+      alert('Restaurado fechado!');
+    }
   }
 }

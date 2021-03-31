@@ -6,22 +6,22 @@
     <input type="text" class="form-control" placeholder="Buscar estabelecimento" aria-label="Buscar estabelecimento"
       aria-describedby="basic-addon2" [(ngModel)]="restaurantFilter">
     <div class=" input-group-append">
-    <button class="btn btn-default" type="button" (click)="filterByName()"><img src="assets/img/search.svg"
-        alt=""></button>
+      <button class="btn btn-default" type="button" (click)="filterByName()"><img src="assets/img/search.svg"
+          alt=""></button>
+    </div>
   </div>
 </div>
-</div>
 <div class="container w-100 m-auto">
-  <div class="row m-auto">
+  <div class="row m-auto mt-4">
     <div *ngIf="isLoading" class="mt-3 text-center">
       <app-loading-spinner></app-loading-spinner>
     </div>
     <ng-container *ngIf="!isLoading">
-      <div class="mt-4">
-        <ng-container *ngFor="let restaurant of restaurants; let index = index">
-          <app-restaurant-card class="col-md-4" [restaurant]="restaurant"></app-restaurant-card>
-        </ng-container>
-      </div>
+      <ng-container *ngFor="let restaurant of restaurants; let index = index">
+        <div class="col mt-4">
+          <app-restaurant-card [restaurant]="restaurant"></app-restaurant-card>
+        </div>
+      </ng-container>
     </ng-container>
   </div>
 </div>

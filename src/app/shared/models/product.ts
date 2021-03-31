@@ -7,5 +7,4 @@ export interface Product {
   description: string;
   price: number;
   promotionalPrice: number;
-  Restaurant: Restaurant;
 }

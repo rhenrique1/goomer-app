@@ -1,4 +1,5 @@
 import { OpeningHours } from "./openingHours";
+import { Product } from "./product";
 
 export interface Restaurant {
   id: number;
@@ -6,4 +7,5 @@ export interface Restaurant {
   name: string;
   address: string;
   openingHours: OpeningHours[];
+  products: Product[];
 }

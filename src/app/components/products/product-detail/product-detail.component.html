@@ -1,5 +1,4 @@
 <div class="backdrop" (click)="onClose()"></div>
-
 <div class="product-over-box">
   <div class="circle">
     <i class="text-center" type="button" aria-label="Close" (click)="onClose()">
@@ -14,17 +13,15 @@
     <div *ngIf="isLoading" class="m-auto text-center center">
       <app-loading-spinner></app-loading-spinner>
     </div>
-    <div *ngIf="!isLoading" class="alert-box-actions">
-      <div class="h-50">
-        <img class="product-photo" [src]="product.photo" alt="">
-      </div>
+    <div *ngIf="!isLoading" class="product-box-actions">
+      <img class="product-photo position-relative" [src]="product.photo" alt="">
       <div class="mt-5">
         <table class="w-100 m-auto">
           <tr>
-            <td class="fs-24 w-75 float-left product-name" colspan="2">{{ product.name }}</td>
+            <td class="fs-24 float-left product-name" colspan="2">{{ product.name }}</td>
           </tr>
           <tr>
-            <td class="fs-16 w-75 float-left product-description">
+            <td class="fs-16 float-left product-description">
               {{ product.description }}
             </td>
             <td class="text-right color-goomer align-bottom fs-32 price">

@@ -1,35 +1,35 @@
-<div class="card-box">
-  <div *ngIf="isOpen()" class="circle-open">
-    <div class="text-circle-open">
-      <p>Aberto<br>agora</p>
-    </div>
-  </div>
-  <div *ngIf="!isOpen()" class="circle-closed">
-    <div class="text-circle-closed">
-      <p>Fechado</p>
-    </div>
-  </div>
-  <div class="card" (click)="navigationService.navigate('restaurant/', restaurant.id)">
-    <table>
-      <tr>
-        <td>
-          <img class="img" [src]="restaurant.photo" alt="">
-        </td>
-        <td>
-          <table cellspacing="0" class="restaurant-data">
-            <tr>
-              <td class="restaurant-name">
-                <p>{{ restaurant.name }}</p>
-              </td>
-            </tr>
-            <tr>
-              <td class="restaurant-address">
-                <p>{{ restaurant.address }}</p>
-              </td>
-            </tr>
-          </table>
-        </td>
-      </tr>
-    </table>
-  </div>
+<div class="card-box mt-3">
+  <table class="restaurant-card" (click)="navigate()">
+    <tr>
+      <td>
+        <img class="img" [src]="restaurant.photo" alt="">
+      </td>
+      <td>
+        <table class="restaurant-data">
+          <tr>
+            <td class="restaurant-name fs-16">
+              <p>{{ restaurant.name }}</p>
+            </td>
+          </tr>
+          <tr>
+            <td class="restaurant-address fs-12">
+              <p>{{ restaurant.address }}</p>
+            </td>
+          </tr>
+        </table>
+      </td>
+      <td>
+        <div *ngIf="isOpen()" class="circle-open">
+          <div class="text-circle-open">
+            <p>Aberto<br>agora</p>
+          </div>
+        </div>
+        <div *ngIf="!isOpen()" class="circle-closed">
+          <div class="text-circle-closed">
+            <p>Fechado</p>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </table>
 </div>

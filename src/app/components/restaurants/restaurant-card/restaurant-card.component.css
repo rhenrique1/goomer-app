@@ -1,40 +1,22 @@
 div,
-td {
+table {
   font-family: 'Montserrat', sans-serif !important;
 }
 
 .card-box {
   display: flex;
   flex-direction: row;
-  width: 394px;
-  height: 128px;
+  width: 367px;
+  height: 100px;
   opacity: 1;
   position: relative;
   z-index: 50;
-  float: left;
-}
-
-.card {
-  /* margin: auto; */
-  width: 367px;
-  height: 105px;
-  background: #FFFFFF 0% 0% no-repeat padding-box;
   box-shadow: 0px 2px 4px #00000029;
-  border-radius: 4px;
-  opacity: 1;
-  position: relative;
-  z-index: 80;
 }
 
 .restaurant-data {
   position: relative;
-  left: 30px;
-  vertical-align: baseline;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  border-spacing: 0;
-  border-collapse: collapse;
+  left: 25px;
   line-height: 1;
 }
 
@@ -66,7 +48,7 @@ td {
 .img {
   width: 100px;
   height: 100px;
-  max-width: 100px;
+  max-width: 120px;
   max-height: 100px;
 }
 
@@ -81,8 +63,8 @@ td {
   opacity: 1;
   position: relative;
   z-index: 90;
-  left: 365px;
-  top: -15px;
+  left: 35px;
+  top: -45px;
 }
 
 .circle-closed {
@@ -96,8 +78,8 @@ td {
   opacity: 1;
   position: relative;
   z-index: 90;
-  left: 365px;
-  top: -15px;
+  left: 35px;
+  top: -45px;
 }
 
 .text-circle-open {
@@ -120,4 +102,9 @@ td {
   width: 80%;
   z-index: 100;
   margin: 0 auto;
+}
+
+.restaurant-card {
+	text-align: left;
+	margin-left: 0;
 }
